@@ -1,5 +1,6 @@
 package com.example.enstorstark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,8 +32,16 @@ public class StartActivity extends AppCompatActivity {
         pubsButton = findViewById(R.id.button_pubs);
         mapButton = findViewById(R.id.button_map);
         searchButton = findViewById(R.id.button_search);
-        pubsButton.setOnClickListener(v -> Log.d(name, "pubs-button pressed"));
+        pubsButton.setOnClickListener(v -> {
+            Log.d(name, "pubs-button pressed");
+            launchPubsActivity(v);
+        });
         mapButton.setOnClickListener(v -> Log.d(name, "map-button pressed"));
         searchButton.setOnClickListener(v -> Log.d(name, "search-button pressed"));
+    }
+
+    private void launchPubsActivity(View view) {
+        Intent intent = new Intent(this, PubsActivity.class);
+        startActivity(intent);
     }
 }
