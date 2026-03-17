@@ -51,7 +51,7 @@ public class PubsAdapter extends RecyclerView.Adapter<PubsAdapter.PubViewHolder>
         Pub currentItem = pubList.get(position);
         holder.textName.setText(currentItem.name());
         holder.textApk.setText(String.format(Locale.getDefault(),
-                "%.3f", currentItem.getApk()));
+                "%.3f", currentItem.beer().getApk()));
         holder.itemView.setOnClickListener(v -> {
             listener.onItemClick(currentItem);
         });
