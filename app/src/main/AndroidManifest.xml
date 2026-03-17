@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Enstorstark">
         <activity
+            android:name=".PubDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".PubsActivity"
             android:exported="false" />
         <activity

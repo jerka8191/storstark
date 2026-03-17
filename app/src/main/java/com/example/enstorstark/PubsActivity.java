@@ -1,5 +1,6 @@
 package com.example.enstorstark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -25,15 +26,15 @@ public class PubsActivity extends AppCompatActivity implements PubsAdapter.OnIte
         setContentView(R.layout.activity_pubs);
         recyclerView = findViewById(R.id.recyclerView);
         pubs = PlaceholderData.get(); // remove this when database exists
-        pubs.sort((p1, p2) -> Double.compare(p2.getApk(), p1.getApk()));
+        pubs.sort((p1, p2) -> Double.compare(p2.beer().getApk(), p1.beer().getApk()));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PubsAdapter(pubs, this);
         recyclerView.setAdapter(adapter);
     }
 
     public void onItemClick(Pub pub) {
-        Toast.makeText(this,
-                "TODO: Launch activity to display details on " + pub.name(),
-                Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, PubDetailsActivity.class);
+        intent.putExtra("pub", pub);
+        startActivity(intent);
     }
 }
