@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +31,21 @@ public class PubsActivity extends AppCompatActivity implements PubsAdapter.OnIte
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PubsAdapter(pubs, this);
         recyclerView.setAdapter(adapter);
+        SearchView searchView = findViewById(R.id.searchView);
+        searchView.setIconifiedByDefault(false);
+        searchView.setQueryHint("Search pub");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.filter(query);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
+                return false;
+            }
+        });
     }
 
     public void onItemClick(Pub pub) {
