@@ -36,12 +36,20 @@ public class StartActivity extends AppCompatActivity {
             Log.d(name, "pubs-button pressed");
             launchPubsActivity(v);
         });
-        mapButton.setOnClickListener(v -> Log.d(name, "map-button pressed"));
+        mapButton.setOnClickListener(v -> {
+                Log.d(name, "map-button pressed");
+                launchMapsActivity(v);
+        });
+
         searchButton.setOnClickListener(v -> Log.d(name, "search-button pressed"));
     }
 
     private void launchPubsActivity(View view) {
         Intent intent = new Intent(this, PubsActivity.class);
+        startActivity(intent);
+    }
+    private void launchMapsActivity(View view) {
+        Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
     }
 }
