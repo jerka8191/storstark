@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.enstorstark.R;
 import com.example.enstorstark.items.Pub;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class PubsAdapter extends RecyclerView.Adapter<PubsAdapter.PubViewHolder> {
     private List<Pub> pubList;
+    private List<Pub> pubListFull;
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -23,7 +25,23 @@ public class PubsAdapter extends RecyclerView.Adapter<PubsAdapter.PubViewHolder>
 
     public PubsAdapter(List<Pub> pubList, OnItemClickListener listener) {
         this.pubList = pubList;
+        pubListFull = new ArrayList<>(pubList);
         this.listener = listener;
+    }
+
+    public void filter(String text) {
+        pubList.clear();
+        if (text.isEmpty()) {
+            pubList.addAll(pubListFull);
+        } else {
+            text = text.toLowerCase();
+            for (Pub pub : pubListFull) {
+                if (pub.name().toLowerCase().contains(text)) {
+                    pubList.add(pub);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     public static class PubViewHolder extends RecyclerView.ViewHolder {

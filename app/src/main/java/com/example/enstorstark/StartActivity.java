@@ -17,7 +17,6 @@ public class StartActivity extends AppCompatActivity {
     private static String name = StartActivity.class.getSimpleName();
     private Button pubsButton;
     private Button mapButton;
-    private Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,6 @@ public class StartActivity extends AppCompatActivity {
         });
         pubsButton = findViewById(R.id.button_pubs);
         mapButton = findViewById(R.id.button_map);
-        searchButton = findViewById(R.id.button_search);
         pubsButton.setOnClickListener(v -> {
             Log.d(name, "pubs-button pressed");
             launchPubsActivity(v);
@@ -40,8 +38,6 @@ public class StartActivity extends AppCompatActivity {
                 Log.d(name, "map-button pressed");
                 launchMapsActivity(v);
         });
-
-        searchButton.setOnClickListener(v -> Log.d(name, "search-button pressed"));
     }
 
     private void launchPubsActivity(View view) {
